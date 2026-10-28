@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spike Decision Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="setup" class="screen panel-screen">
+    <div class="panel">
+      <p class="eyebrow">CECS 448 · Project 2</p>
+      <h1>Spike decision test</h1>
+      <p class="lead">Measures how fast and how accurately players decide if there is still time to defuse, with the current HUD and our redesign.</p>
+      <form id="setup-form">
+        <fieldset class="field">
+          <legend>Version</legend>
+          <div class="checks">
+            <label><input type="radio" name="order" value="A" required> A</label>
+            <label><input type="radio" name="order" value="B" required> B</label>
+          </div>
+        </fieldset>
+        <div class="howto">
+          <h2>Read this to the tester</h2>
+          <ol>
+            <li>You are about to defuse the spike. A defuse takes 7 seconds.</li>
+            <li>A screenshot will appear. Decide as fast as you can:</li>
+            <li>Press <kbd>F</kbd> if you can still defuse in time, or <kbd>J</kbd> if it's too late and you should save.</li>
+          </ol>
+          <p class="muted">Keep one finger on F and one on J. You have 5 seconds per screenshot.</p>
+        </div>
+        <div class="actions">
+          <button id="start" type="submit" class="primary">Start test</button>
+          <button id="practice" type="button">Practice round</button>
+        </div>
+        <p id="setup-msg" class="msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="next" class="screen panel-screen" hidden>
+    <div class="panel center">
+      <p id="next-count" class="eyebrow"></p>
+      <h2>Ready?</h2>
+      <p class="lead"><kbd>F</kbd> = I can defuse &nbsp;·&nbsp; <kbd>J</kbd> = too late</p>
+      <p class="muted">Press <kbd>Space</kbd> to start.</p>
+    </div>
+  </section>
+
+  <section id="trial" class="screen" hidden>
+    <img id="frame" class="frame" alt="" draggable="false" hidden>
+    <div id="trial-count" class="count"></div>
+    <div class="hint"><kbd>F</kbd> defuse · <kbd>J</kbd> too late</div>
+    <div id="flash" class="flash" hidden></div>
+  </section>
+
+  <section id="final" class="screen panel-screen" hidden>
+    <div class="panel wide">
+      <p class="eyebrow">Test finished</p>
+      <h1 id="final-title">Results</h1>
+      <div class="table-wrap"><table id="final-table"></table></div>
+      <div class="actions">
+        <button id="copy-final" class="primary">Copy for Google Sheets</button>
+        <button id="final-new">Next tester</button>
+      </div>
+      <p id="final-msg" class="msg" role="status"></p>
+    </div>
+  </section>
+
+  <script src="spike-config.js"></script>
+  <script src="spike.js"></script>
+</body>
+</html>

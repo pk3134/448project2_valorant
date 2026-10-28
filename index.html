@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HUD Reaction Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Setup -->
+  <section id="setup" class="screen panel-screen">
+    <div class="panel">
+      <p class="eyebrow">CECS 448 · Project 2</p>
+      <h1>HUD reaction test</h1>
+      <p class="lead">Measures how fast players notice a HUD warning, comparing the current Valorant HUD with our redesign.</p>
+
+      <form id="setup-form">
+        <fieldset class="field">
+          <legend>Version</legend>
+          <div class="checks">
+            <label><input type="radio" name="order" value="A" required> A</label>
+            <label><input type="radio" name="order" value="B" required> B</label>
+          </div>
+        </fieldset>
+
+        <label class="field check">
+          <input id="plays-fps" type="checkbox">
+          <span>Tester plays FPS games regularly</span>
+        </label>
+
+
+        <div class="howto">
+          <h2>Read this to the tester</h2>
+          <ol>
+            <li>Keep your eyes on the crosshair in the middle of the screen.</li>
+            <li>Small targets will pop up next to the crosshair. <b>Click the mouse</b> or press <kbd>Enter</kbd> to shoot them.</li>
+            <li>Something on the HUD will change after a few seconds.</li>
+            <li>Press <kbd>Space</kbd> as soon as you notice the change.</li>
+            <li>Then pick what you noticed (keys <kbd>1</kbd>–<kbd>5</kbd> or click).</li>
+          </ol>
+          <p class="muted">Pressing Space too early counts as a false start, and that trial starts again.</p>
+        </div>
+
+        <div class="actions">
+          <button id="start" type="submit" class="primary">Start test</button>
+          <button id="practice" type="button">Practice round</button>
+          <button id="view-results" type="button">View saved results</button>
+        </div>
+        <p id="setup-msg" class="msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Trial -->
+  <section id="trial" class="screen" hidden>
+    <img id="frame-normal" class="frame" alt="" draggable="false">
+    <img id="frame-mid" class="frame" alt="" draggable="false" hidden>
+    <img id="frame-warning" class="frame" alt="" draggable="false" hidden>
+        <div id="trial-count" class="count"></div>
+    <div class="target-anchor"><div id="target" class="target" hidden></div></div>
+    <div id="flash" class="flash" hidden></div>
+  </section>
+
+  <!-- Question -->
+  <section id="question" class="screen panel-screen" hidden>
+    <div class="panel">
+      <p id="q-result" class="eyebrow"></p>
+      <h2>What did you notice?</h2>
+      <div id="answers" class="answers"></div>
+    </div>
+  </section>
+
+  <!-- Between trials -->
+  <section id="next" class="screen panel-screen" hidden>
+    <div class="panel center">
+      <p id="next-count" class="eyebrow"></p>
+      <h2>Ready for the next one?</h2>
+      <p class="lead">Eyes on the crosshair. <b>Click</b> or press <kbd>Enter</kbd> to shoot the targets, and press <kbd>Space</kbd> only when something on the HUD changes.</p>
+      <p class="muted">Press <kbd>Space</kbd> to start.</p>
+    </div>
+  </section>
+
+  <!-- End of test: time and accuracy -->
+  <section id="final" class="screen panel-screen" hidden>
+    <div class="panel wide">
+      <p class="eyebrow">Test finished</p>
+      <h1 id="final-title">Results</h1>
+      <div class="table-wrap"><table id="final-table"></table></div>
+      <div class="actions">
+        <button id="copy-final" class="primary">Copy for Google Sheets</button>
+        <button id="final-new">Next tester</button>
+      </div>
+      <p id="final-msg" class="msg" role="status"></p>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="screen panel-screen" hidden>
+    <div class="panel wide">
+      <p class="eyebrow">Results</p>
+      <h1 id="results-title">Results</h1>
+      <div class="tabs" role="tablist">
+        <button id="tab-session" role="tab" aria-selected="true">This tester</button>
+        <button id="tab-all" role="tab" aria-selected="false">All saved testers</button>
+      </div>
+      <div id="summary"></div>
+      <details>
+        <summary>Every trial</summary>
+        <div class="table-wrap"><table id="raw"></table></div>
+      </details>
+      <div class="actions">
+        <button id="copy-csv" class="primary">Copy as CSV</button>
+        <button id="download-csv">Download CSV</button>
+        <button id="new-tester">New tester</button>
+        <button id="clear-all" class="danger">Delete all saved results</button>
+      </div>
+      <p id="results-msg" class="msg" role="status"></p>
+    </div>
+  </section>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
